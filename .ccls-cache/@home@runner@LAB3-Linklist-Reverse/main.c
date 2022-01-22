@@ -4,6 +4,9 @@
 #include "node.h"
 
 int main(){
+  int i,j,Temp_ID;
+  char *Temp_Name;
+  Temp_Name = (char*) malloc(sizeof(int)*30);
   NODE *head,*temp,*prev,*forw ;
   head=(NodePtr) malloc(sizeof(NODE));
   temp = head;
@@ -13,8 +16,6 @@ int main(){
 
   while(1)
   {
-    int i,j,Temp_ID;
-    char Temp_Name[20];
     Temp_ID = 0;
     fflush(stdin);
     scanf("%d %s",&Temp_ID,Temp_Name);
@@ -35,6 +36,7 @@ int main(){
         NODE_count++;
       }
   }
+  free(Temp_Name);
   
   for(temp=head; temp!=NULL ;temp=temp->next){
       prev = temp;
@@ -44,7 +46,7 @@ int main(){
       //printf("%d NODE left\n",NODE_count);
   }
   free(temp);
-  //NODE_count--;
-  //printf("Number of NODE after free is %d \n",NODE_count);
+  NODE_count--;
   printf("NULL\n");
+  printf("Number of NODE after free is %d \n",NODE_count);
 }
