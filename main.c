@@ -11,7 +11,18 @@ int main(){
   head=(NodePtr) malloc(sizeof(NODE));
   temp = head;
   prev = NULL;
-  printf("Input ID and Name: ");
+  fflush(stdin);
+  printf("Input ID :");
+  if(scanf("%d",&Temp_ID)){};
+  fflush(stdin);
+  if(Temp_ID!=0){
+    printf("Input Name :");
+    fflush(stdin);
+    if(scanf(" %s",Temp_Name)){};
+    temp->id   = Temp_ID;
+    strcpy(temp->name,Temp_Name);
+  }
+  //printf("Input ID and Name: ");
   //////////////////////////////
   // head = point to head of NODE
   // temp = current pointer point to present NODE and next NODE
@@ -22,9 +33,17 @@ int main(){
   {
     Temp_ID = 0;
     fflush(stdin);
-    scanf("%d %s",&Temp_ID,Temp_Name);
+    printf("Input ID :");
+    fflush(stdin);
+    if(scanf("%d",&Temp_ID)){};
+    
+    if(Temp_ID!=0){
+    printf("Input Name :");
+    fflush(stdin);
+    if(scanf(" %s",Temp_Name)){};
     temp->id   = Temp_ID;
     strcpy(temp->name,Temp_Name);
+    }
     if(Temp_ID == 0)
     {
       free(temp);   //free next one that already create by loop befor this loop
@@ -45,6 +64,7 @@ int main(){
     //////////////////////////////////////////////////
   }
   free(Temp_Name);
+  
   ///////print output & free after print///////
   for(temp=head; temp!=NULL ;temp=forw){
       forw = temp->next;
