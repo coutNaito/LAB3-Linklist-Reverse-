@@ -13,7 +13,7 @@ int main(){
   prev = NULL;
   printf("Input ID and Name: ");
 
-  while(1)
+  while(Temp_ID != 0 )
   {
     Temp_ID = 0;
     fflush(stdin);
@@ -23,7 +23,6 @@ int main(){
     if(Temp_ID == 0)
     {
       head = prev;
-      break;
     }
     else
       {
@@ -35,7 +34,7 @@ int main(){
       }
   }
   free(Temp_Name);
-  
+  ///////print output & free after print
   for(temp=head; temp!=NULL ;temp=temp->next){
       prev = temp;
       printf("%d_%s --> ",temp->id,temp->name);
