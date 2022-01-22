@@ -9,67 +9,42 @@ int main(){
   temp = head;
   prev = NULL;
   int NODE_count = 1;
-  //emergency break
-  int handbreak=0;
+  printf("Input ID and Name: ");
 
   while(1)
   {
-    //emegency break
-    if(handbreak > 20)
+    int i,j,Temp_ID;
+    char Temp_Name[20];
+    Temp_ID = 0;
+    fflush(stdin);
+    scanf("%d %s",&Temp_ID,Temp_Name);
+    temp->id   = Temp_ID;
+    strcpy(temp->name,Temp_Name);
+    if(Temp_ID == 0)
     {
+      head = prev;
       break;
     }
-    int i,j,word;
-    char convert[7];
-    char input[200];
-    word = 0;
-    printf("Input ID and Name\n");
-    fflush(stdin);
-    gets(input);
-
-    for(i=0; i<strlen(input)+1; i++)
-    {
-        if(input[i]==' ')
-        {
-            if(input[i+1]==' ')
-              break;
-            if(word%2!=0)
-              temp->id = atoi(convert);
-              j=0;
-              word++;
-        }
-        else if(word%2!=0)
-        {
-            convert[j] = input[i];
-            j++;
-        }
-        else if(word%2==0)
-        {
-            temp->name[j] = input[i];
-            j++;
-        }
-
-        if(word==2)
-        {
-            if(i==strlen(input))
-              temp->next = NULL;
-            else
-            {
-              temp->next = (NodePtr)malloc(sizeof(NODE));
-              forw = temp->next;
-              temp->next = prev;
-              prev = temp;
-              temp = forw;
-              NODE_count++;
-            }
-        }
-        
-    }
-    handbreak++;
+    else
+      {
+        temp->next = (NodePtr)malloc(sizeof(NODE));
+        forw = temp->next;
+        temp->next = prev;
+        prev = temp;
+        temp = forw;
+        NODE_count++;
+      }
   }
   
   for(temp=head; temp!=NULL ;temp=temp->next){
-       printf("%d->",temp->id);
+      prev = temp;
+      printf("%d_%s --> ",temp->id,temp->name);
+      free(prev);
+      NODE_count--;
+      //printf("%d NODE left\n",NODE_count);
   }
-     printf("NULL\n");
+  free(temp);
+  //NODE_count--;
+  //printf("Number of NODE after free is %d \n",NODE_count);
+  printf("NULL\n");
 }
