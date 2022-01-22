@@ -11,7 +11,6 @@ int main(){
   head=(NodePtr) malloc(sizeof(NODE));
   temp = head;
   prev = NULL;
-  int NODE_count = 1;
   printf("Input ID and Name: ");
 
   while(1)
@@ -33,7 +32,6 @@ int main(){
         temp->next = prev;
         prev = temp;
         temp = forw;
-        NODE_count++;
       }
   }
   free(Temp_Name);
@@ -42,11 +40,7 @@ int main(){
       prev = temp;
       printf("%d_%s --> ",temp->id,temp->name);
       free(prev);
-      NODE_count--;
-      //printf("%d NODE left\n",NODE_count);
   }
   free(temp);
-  NODE_count--;
   printf("NULL\n");
-  printf("Number of NODE after free is %d \n",NODE_count);
 }
