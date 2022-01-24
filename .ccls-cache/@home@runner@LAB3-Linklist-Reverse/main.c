@@ -4,7 +4,7 @@
 #include "node.h"
 
 int main(){
-  int i,Temp_ID,count;
+  int i,Temp_ID;
   char *Temp_Name;
   Temp_Name = (char*) malloc(sizeof(char)*30); //temporary array
   NODE *head,*temp,*prev,*forw ;
@@ -49,8 +49,8 @@ int main(){
 
     if(Temp_ID == 0)
     {
-      free(forw);   //free next one that already create by loop befor this loop
-      i--;
+      free(temp);   //free next one that already create by loop befor this loop
+      //i--;        
       head = prev;
       break;  
     }
