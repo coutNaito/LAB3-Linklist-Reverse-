@@ -4,13 +4,14 @@
 #include "node.h"
 
 int main(){
-  int i,j,Temp_ID,count;
+  int i,Temp_ID,count;
   char *Temp_Name;
-  Temp_Name = (char*) malloc(sizeof(int)*30); //temporary array
+  Temp_Name = (char*) malloc(sizeof(char)*30); //temporary array
   NODE *head,*temp,*prev,*forw ;
   head=(NodePtr) malloc(sizeof(NODE));
   temp = head;
   prev = NULL;
+  /*
   fflush(stdin);
   printf("Input ID :");
   if(scanf("%d",&Temp_ID)){};
@@ -22,21 +23,22 @@ int main(){
     temp->id   = Temp_ID;
     strcpy(temp->name,Temp_Name);
   }
+  */
   //printf("Input ID and Name: ");
   //////////////////////////////
   // head = point to head of NODE
   // temp = current pointer point to present NODE and next NODE
   // prev = point to NODE before current NODE
   // forw = point to next NODE
+  // i    = count the loop (NODE that created)
   //////////////////////////////
-  while(Temp_ID != 0 )
+  for(i=1 ; i>-1; i++)
   {
     Temp_ID = 0;
-    fflush(stdin);
     printf("Input ID :");
     fflush(stdin);
     if(scanf("%d",&Temp_ID)){};
-    
+
     if(Temp_ID!=0){
     printf("Input Name :");
     fflush(stdin);
@@ -44,19 +46,22 @@ int main(){
     temp->id   = Temp_ID;
     strcpy(temp->name,Temp_Name);
     }
+
     if(Temp_ID == 0)
     {
-      free(temp);   //free next one that already create by loop befor this loop
-      head = prev;  
+      free(forw);   //free next one that already create by loop befor this loop
+      i--;
+      head = prev;
+      break;  
     }
     else
-      {
-        temp->next = (NodePtr)malloc(sizeof(NODE));
-        forw = temp->next;
-        temp->next = prev;
-        prev = temp;
-        temp = forw;
-      }
+    {
+      temp->next = (NodePtr)malloc(sizeof(NODE));
+      forw = temp->next;
+      temp->next = prev;
+      prev = temp;
+      temp = forw;
+    }
     //////////////////////////////////////////////////
     //when finish 1 loop in will auto creat next NODE
     //forw and temp will point at that NODE
@@ -70,6 +75,7 @@ int main(){
       forw = temp->next;
       printf("%d_%s --> ",temp->id,temp->name);
       free(temp);
+      //i--;
   }
   printf("NULL\n");
 }
